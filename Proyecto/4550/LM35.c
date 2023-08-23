@@ -11,7 +11,7 @@ Driver Version    :  1.0
 ********************************************************************************/
 
 /*******************************************************************************
-Para usar el cï¿½digo con bootloader, configurar como lo indica MICROSIDE:
+Para usar el código con bootloader, configurar como lo indica MICROSIDE:
 1) Tools> Options> Output> Output Settings> Marcar "Long HEX format"
 2) Project> Edit Project> Insertar 48.000000 en "MCU Clock Frequency [MHz]" box
 ********************************************************************************/
@@ -19,7 +19,7 @@ Para usar el cï¿½digo con bootloader, configurar como lo indica MICROSIDE:
 #pragma orgall 0x1FFF                     //Espacio reservado para bootloader
 
 
-//Referencias externas de conexiï¿½n del modulo LCD
+//Referencias externas de conexión del modulo LCD
 sbit LCD_RS at LATB0_bit;
 sbit LCD_EN at LATB2_bit;
 sbit LCD_D4 at LATB3_bit;
@@ -33,7 +33,7 @@ sbit LCD_D4_Direction at TRISB3_bit;
 sbit LCD_D5_Direction at TRISB4_bit;
 sbit LCD_D6_Direction at TRISB5_bit;
 sbit LCD_D7_Direction at TRISB6_bit;
-// Fin de las referencias externas de conexiï¿½n del modulo LCD
+// Fin de las referencias externas de conexión del modulo LCD
 
 char txt[] = "Microside";
 char raw_temp[15] = "";
