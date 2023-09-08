@@ -16,10 +16,9 @@ Para usar el código con bootloader, configurar como lo indica MICROSIDE:
 2) Project> Edit Project> Insertar 48.000000 en "MCU Clock Frequency [MHz]" box
 ********************************************************************************/
 
-#pragma orgall 0x1FFF                     //Espacio reservado para bootloader
+#pragma orgall 0x1FFF // Espacio reservado para bootloader
 
-
-//Referencias externas de conexión del modulo LCD
+// Referencias externas de conexión del modulo LCD
 sbit LCD_RS at LATB0_bit;
 sbit LCD_EN at LATB2_bit;
 sbit LCD_D4 at LATB3_bit;
@@ -40,33 +39,32 @@ char raw_temp[15] = "";
 
 float temperatura;
 
-
 void main() org 0x2000
 {
-  ANSELB  = 0;                     //Configura los pines del puerto B como digitales
-  C1ON_bit = 0;                    // Disable comparators
-  C2ON_bit = 0;
-  TRISB2_bit = 0;                  //Declaramos el B1 como salida
-  LATB.f1 = 0;                     //Escribimos un 0 para definir el LCD como escritura
-  TRISA0_bit = 1;                  //PIN como entrada
-  ANSA0_bit = 1;                   //PIN como analógico
-  Lcd_Init();                      //Initializa el LCD
-  Lcd_Out(1,2,txt);
-  Lcd_Cmd(_LCD_CLEAR);             //Limpia el display
-  Lcd_Cmd(_LCD_CURSOR_OFF);        //Posiciona el Cursor
+   ANSELB = 0;                           // Configura los pines del puerto B como digitales
+   C1ON_bit = 0;                         // Disable comparators
+   C2ON_bit = 0;
+   TRISB2_bit = 0;                       // Declaramos el B1 como salida
+   LATB.f1 = 0;                          // Escribimos un 0 para definir el LCD como escritura
+   TRISA0_bit = 1;                       // PIN como entrada
+   ANSA0_bit = 1;                        // PIN como analógico
+   Lcd_Init();                           // Initializa el LCD
+   Lcd_Out( 1, 2, txt );
+   Lcd_Cmd( _LCD_CLEAR );                // Limpia el display
+   Lcd_Cmd( _LCD_CURSOR_OFF );           // Posiciona el Cursor
 
-  while(1) {    
-      Delay_ms(100);
-      temperatura = ADC_Read(0);          //lee voltaje analogico en puerto A0
-      temperatura = temperatura * 0.488;  //Da formato al valor de salida
-      FloatToStr(temperatura, raw_temp);
-      Delay_ms(100);
-      Lcd_Out(1,2,txt);
-      Lcd_Out(2,2,"Temp:");
-      Lcd_Chr(2,7,raw_temp[0]);
-      Lcd_Chr(2,8,raw_temp[1]);
-      Lcd_Chr(2,9,raw_temp[2]);
-      Lcd_Chr(2,10,raw_temp[3]);
-      Delay_ms(100);
-  }
+   while ( 1 ) {
+      Delay_ms( 100 );
+      temperatura = ADC_Read( 0 );       // lee voltaje analogico en puerto A0
+      temperatura = temperatura * 0.488; // Da formato al valor de salida
+      FloatToStr( temperatura, raw_temp );
+      Delay_ms( 100 );
+      Lcd_Out( 1, 2, txt );
+      Lcd_Out( 2, 2, "Temp:" );
+      Lcd_Chr( 2, 7, raw_temp[0] );
+      Lcd_Chr( 2, 8, raw_temp[1] );
+      Lcd_Chr( 2, 9, raw_temp[2] );
+      Lcd_Chr( 2, 10, raw_temp[3] );
+      Delay_ms( 100 );
+   }
 }
